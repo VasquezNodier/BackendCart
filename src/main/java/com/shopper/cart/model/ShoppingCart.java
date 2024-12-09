@@ -45,7 +45,7 @@ public class ShoppingCart {
 	private LocalDateTime updatedAt;
 	
 	@OneToMany(mappedBy = "shoppingCart", cascade = CascadeType.ALL, orphanRemoval = true)
-	@JsonIgnore
+//	@JsonIgnore
 	private List<ShoppingCartDetail> shoppingCartDetails = new ArrayList<>();
 	
 	@OneToMany(mappedBy = "shoppingCart", cascade = CascadeType.ALL, orphanRemoval = true)
