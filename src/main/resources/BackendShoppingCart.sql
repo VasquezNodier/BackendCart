@@ -86,7 +86,7 @@ ALTER TABLE "shopper"."orders" ADD FOREIGN KEY ("coupon_id") REFERENCES "shopper
 
 INSERT INTO shopper.Users (email, username, password, created_at) 
 VALUES 
-('nodier@example.com', 'nodier', 'password123', CURRENT_TIMESTAMP),
+('admin@example.com', 'admin', 'password123', CURRENT_TIMESTAMP),
 ('otro@example.com', 'otro', 'securepass', CURRENT_TIMESTAMP);
 
 INSERT INTO shopper.Products (name, description, price, stock, created_at) 
