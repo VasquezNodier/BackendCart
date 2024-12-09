@@ -28,6 +28,7 @@ Antes de ejecutar el proyecto, asegúrate de tener instalado:
 1. **Clona el repositorio:**
    ```bash
    git clone https://github.com/VasquezNodier/BackendCart.git
+   
    cd BackendCart
     
 2. **Configura el archivo `application.properties` o `application.yml`:**
@@ -40,7 +41,7 @@ Antes de ejecutar el proyecto, asegúrate de tener instalado:
     
 5.  `mvn spring-boot:run`
 
-6.  Accede al API desde `http://localhost:8080/swagger-ui/index.html`
+6.  Accede a la documentación de la API desde `http://localhost:8080/swagger-ui/index.html`
 
 **Estructura del Proyecto**
 ---------------------------
