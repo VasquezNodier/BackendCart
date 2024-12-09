@@ -39,7 +39,8 @@ Antes de ejecutar el proyecto, asegúrate de tener instalado:
 4.  `mvn clean install`
     
 5.  `mvn spring-boot:run`
-    
+
+6.  Access to API doc from `http://localhost:8080/swagger-ui/index.html`
 
 **Estructura del Proyecto**
 ---------------------------
