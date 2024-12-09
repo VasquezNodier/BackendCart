@@ -26,7 +26,7 @@ public class Order {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
-	@JsonIgnore
+//	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name="shopping_cart_id")
 	private ShoppingCart shoppingCart;

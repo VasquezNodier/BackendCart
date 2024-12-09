@@ -92,9 +92,13 @@ public class ShoppingCartDetailServiceImpl implements ShoppingCartDetailService 
 	     */
 	    ShoppingCartDetail existingDetail = findCartByCompoundId(id);
 
-	    if (quantity <= 0) {
+	    if (quantity == 0) {
 	        deleteCartDetail(id);
 	        return null;
+	    }
+	    
+	    if (quantity <= 0) {
+	    	throw new RuntimeException("Quantity should be greater than 0");
 	    }
 
 	    existingDetail.setQuant(quantity);

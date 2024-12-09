@@ -45,7 +45,7 @@ public class Product {
 	@OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<SeasonalDiscount> seasonalDiscounts;
 	
-	@JsonIgnore
+//	@JsonIgnore
 	@OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<ShoppingCartDetail> shoppingCartDetails = new ArrayList<>();
 	

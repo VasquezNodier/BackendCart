@@ -31,13 +31,13 @@ public class ShoppingCartDetail {
 	@ManyToOne
 	@MapsId("cartId")
 	@JoinColumn(name="cart_id")
-	@JsonIgnore
+//	@JsonIgnore
 	private ShoppingCart shoppingCart;
 	
 	@ManyToOne
 	@MapsId("productId")
 	@JoinColumn(name="product_id")
-	@JsonIgnore
+//	@JsonIgnore
 	private Product product;
 	
 	@Column(nullable = false)
