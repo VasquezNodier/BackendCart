@@ -56,10 +56,9 @@ Antes de ejecutar el proyecto, asegúrate de tener instalado:
          /service
             /impl
       /resources
-         application.properties
-         application.yml 
-      /test
-         /java/com/tuempresa   
+         application.properties 
+         BackendShoppingCart.sql    --> Script SQL
+         RelationalModelSQL.png     --> Database Diagram         
    ```
 
     
