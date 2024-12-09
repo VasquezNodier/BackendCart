@@ -17,6 +17,7 @@ import com.shopper.cart.dto.SeasonalDiscountDTO;
 import com.shopper.cart.model.SeasonalDiscount;
 import com.shopper.cart.service.SeasonalDiscountService;
 
+import io.swagger.v3.oas.annotations.Hidden;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -25,6 +26,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
 
 @RestController
+@Hidden
 @RequestMapping("/api/v1/discounts")
 @Tag(name = "Seasonal Discount Controller", description = "Controller for seasonal discount")
 public class SeasonalDiscountController {

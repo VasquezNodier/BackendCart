@@ -43,12 +43,12 @@ public class ShoppingCartController {
 	
 	@GetMapping
 	@Operation(
-	        summary = "Get all shopping carts",
-	        description = "Retrieves a list of all shopping carts.",
+	        summary = "Get all active shopping carts",
+	        description = "Retrieves a list of all active shopping carts.",
 	        responses = {
 	                @ApiResponse(
 	                        responseCode = "200",
-	                        description = "Successfully retrieved all shopping carts",
+	                        description = "Successfully retrieved all active shopping carts",
 	                        content = @Content(
 	                                mediaType = "application/json",
 	                                schema = @Schema(implementation = ShoppingCart.class)
@@ -61,7 +61,7 @@ public class ShoppingCartController {
 	        }
 	)
 	public ResponseEntity<List<ShoppingCart>> getAllCarts() {
-	    List<ShoppingCart> carts = cartService.getAllCarts();
+	    List<ShoppingCart> carts = cartService.findAllActiveCarts();
 	    return ResponseEntity.ok(carts);
 	}
 

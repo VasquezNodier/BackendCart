@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import jakarta.persistence.CascadeType;
@@ -30,13 +31,13 @@ public class ShoppingCartDetail {
 	@ManyToOne
 	@MapsId("cartId")
 	@JoinColumn(name="cart_id")
-	@JsonBackReference
+	@JsonIgnore
 	private ShoppingCart shoppingCart;
 	
 	@ManyToOne
 	@MapsId("productId")
 	@JoinColumn(name="product_id")
-	@JsonBackReference
+	@JsonIgnore
 	private Product product;
 	
 	@Column(nullable = false)

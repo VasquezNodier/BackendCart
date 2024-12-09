@@ -3,6 +3,7 @@ package com.shopper.cart.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -88,32 +89,32 @@ public class CouponController {
 	}
 
 	@PostMapping
-	@Operation(
-	        summary = "Create a new coupon",
-	        description = "Creates a new coupon with the provided details.",
-	        requestBody = @io.swagger.v3.oas.annotations.parameters.RequestBody(
-	                description = "Coupon details to be created",
-	                required = true,
-	                content = @Content(
-	                        mediaType = "application/json",
-	                        schema = @Schema(implementation = Coupon.class)
-	                )
-	        ),
-	        responses = {
-	                @ApiResponse(
-	                        responseCode = "200",
-	                        description = "Coupon successfully created",
-	                        content = @Content(
-	                                mediaType = "application/json",
-	                                schema = @Schema(implementation = Coupon.class)
-	                        )
-	                ),
-	                @ApiResponse(
-	                        responseCode = "400",
-	                        description = "Invalid input data"
-	                )
-	        }
-	)
+    @Operation(
+            summary = "Create a new coupon",
+            description = "Creates a new coupon with the provided details.",
+            requestBody = @io.swagger.v3.oas.annotations.parameters.RequestBody(
+                    description = "Coupon details to be created",
+                    required = true,
+                    content = @Content(
+                            mediaType = "application/json",
+                            schema = @Schema(implementation = Coupon.class)
+                    )
+            ),
+            responses = {
+                    @ApiResponse(
+                            responseCode = "200",
+                            description = "Coupon successfully created",
+                            content = @Content(
+                                    mediaType = "application/json",
+                                    schema = @Schema(implementation = Coupon.class)
+                            )
+                    ),
+                    @ApiResponse(
+                            responseCode = "400",
+                            description = "Invalid input data"
+                    )
+            }
+    )
 	public ResponseEntity<Coupon> createCoupon(@RequestBody Coupon coupon) {
 	    return ResponseEntity.ok(couponService.createCoupon(coupon));
 	}

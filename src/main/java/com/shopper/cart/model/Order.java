@@ -4,6 +4,9 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -23,15 +26,15 @@ public class Order {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
+	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name="shopping_cart_id")
-	@JsonBackReference
 	private ShoppingCart shoppingCart;
 	
+	@JsonIgnore
 	@ManyToOne
-	@JoinColumn(name="coupon_id")
-	@JsonBackReference
-	private Coupon coupon;
+    @JoinColumn(name = "coupon_id", nullable = true)
+    private Coupon coupon;
 	
 	@Column(nullable = false, precision = 10, scale = 2)
 	private BigDecimal subtotal;

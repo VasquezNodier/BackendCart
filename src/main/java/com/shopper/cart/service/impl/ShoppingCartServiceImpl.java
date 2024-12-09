@@ -28,65 +28,115 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
 
 	@Override
 	public List<ShoppingCart> getAllCarts() {
-		return cartRepository.findAll();
+	    /**
+	     * Retrieves all shopping carts from the database.
+	     *
+	     * @return List of all ShoppingCart objects.
+	     */
+	    return cartRepository.findAll();
 	}
+	
+	@Override
+	public List<ShoppingCart> findAllActiveCarts() {
+		/**
+	     * Retrieves all active shopping carts from the database.
+	     *
+	     * @return List of active ShoppingCart objects.
+	     */
+	    return cartRepository.findAllActiveCarts();
+	}
+	
 
 	@Override
 	public ShoppingCart getCartById(Long cart_id) {
-		return cartRepository.findById(cart_id)
-				.orElseThrow(() -> new RuntimeException
-						("Shopping cart not found with id: "+ cart_id));
+	    /**
+	     * Retrieves a specific shopping cart by its unique ID.
+	     *
+	     * @param cart_id The ID of the shopping cart to be retrieved.
+	     * @return The corresponding ShoppingCart object if found.
+	     * @throws RuntimeException If the shopping cart is not found.
+	     */
+	    return cartRepository.findById(cart_id)
+	            .orElseThrow(() -> new RuntimeException("Shopping cart not found with id: " + cart_id));
 	}
 
 	@Override
 	public ShoppingCart createCart(ShoppingCartDTO cartDTO) {
-		
-		User user = userRepository.findById(cartDTO.getUserId())
-				.orElseThrow(() -> new RuntimeException
-						("User not found with id: "+cartDTO.getUserId()));
-		
-		ShoppingCart cart = new ShoppingCart(
-				user,
-				cartDTO.getTotal(),
-				cartDTO.isActive(),
-				LocalDateTime.now(),
-				LocalDateTime.now()
-		);
-		
-		return cartRepository.save(cart);
+	    /**
+	     * Creates a new shopping cart associated with a specific user.
+	     * Validates the existence of the user before creating the cart.
+	     *
+	     * @param cartDTO The data transfer object containing shopping cart details.
+	     * @return The created ShoppingCart object saved in the database.
+	     * @throws RuntimeException If the user associated with the cart is not found.
+	     */
+	    User user = userRepository.findById(cartDTO.getUserId())
+	            .orElseThrow(() -> new RuntimeException("User not found with id: " + cartDTO.getUserId()));
+
+	    ShoppingCart cart = new ShoppingCart(
+	            user,
+	            BigDecimal.ZERO,
+	            true,
+	            LocalDateTime.now(),
+	            LocalDateTime.now()
+	    );
+
+	    return cartRepository.save(cart);
 	}
-	
+
 	@Override
 	public ShoppingCart updateCart(Long cart_id, ShoppingCart cartActualizado) {
-		ShoppingCart cartExistente = getCartById(cart_id);
+	    /**
+	     * Updates an existing shopping cart with new details.
+	     *
+	     * @param cart_id          The ID of the cart to be updated.
+	     * @param cartActualizado  The ShoppingCart object containing updated details.
+	     * @return The updated ShoppingCart object saved in the database.
+	     * @throws RuntimeException If the shopping cart is not found.
+	     */
+	    ShoppingCart cartExistente = getCartById(cart_id);
 
-		cartExistente.setUser(cartActualizado.getUser());
-		cartExistente.setTotal(cartActualizado.getTotal());
-		cartExistente.setActive(cartActualizado.isActive());
-		cartExistente.setUpdatedAt(LocalDateTime.now());
+	    cartExistente.setUser(cartActualizado.getUser());
+	    cartExistente.setTotal(cartActualizado.getTotal());
+	    cartExistente.setActive(cartActualizado.isActive());
+	    cartExistente.setUpdatedAt(LocalDateTime.now());
 
-		return cartRepository.save(cartExistente);
+	    return cartRepository.save(cartExistente);
 	}
-	
+
 	@Override
 	public ShoppingCart partialUpdateCart(Long cart_id, BigDecimal total, Boolean active) {
-		ShoppingCart cartExistente = getCartById(cart_id);
+	    /**
+	     * Partially updates a shopping cart by modifying only the provided fields.
+	     *
+	     * @param cart_id The ID of the cart to be updated.
+	     * @param total   The new total value, if provided.
+	     * @param active  The new active status, if provided.
+	     * @return The updated ShoppingCart object saved in the database.
+	     * @throws RuntimeException If the shopping cart is not found.
+	     */
+	    ShoppingCart cartExistente = getCartById(cart_id);
 
-		if (total != null) {
-			cartExistente.setTotal(total);
-		}
-		if (active != null) {
-			cartExistente.setActive(active);
-		}
-		cartExistente.setUpdatedAt(LocalDateTime.now());
-		
-		return cartRepository.save(cartExistente);
+	    if (total != null) {
+	        cartExistente.setTotal(total);
+	    }
+	    if (active != null) {
+	        cartExistente.setActive(active);
+	    }
+	    cartExistente.setUpdatedAt(LocalDateTime.now());
+
+	    return cartRepository.save(cartExistente);
 	}
 
 	@Override
 	public void deleteCart(Long cart_id) {
-		ShoppingCart cartExistente = getCartById(cart_id);
-		cartRepository.delete(cartExistente);
+	    /**
+	     * Deletes a shopping cart by its unique ID.
+	     *
+	     * @param cart_id The ID of the cart to be deleted.
+	     * @throws RuntimeException If the shopping cart is not found.
+	     */
+	    ShoppingCart cartExistente = getCartById(cart_id);
+	    cartRepository.delete(cartExistente);
 	}
-
 }

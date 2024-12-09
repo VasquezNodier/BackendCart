@@ -5,6 +5,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import jakarta.persistence.CascadeType;
@@ -28,6 +29,7 @@ public class ShoppingCart {
 	
 	@ManyToOne
 	@JoinColumn(name = "user_id", nullable = false)
+	@JsonIgnore
 	private User user;
 	
 	@Column(nullable = false, precision = 10, scale = 2)
@@ -43,11 +45,11 @@ public class ShoppingCart {
 	private LocalDateTime updatedAt;
 	
 	@OneToMany(mappedBy = "shoppingCart", cascade = CascadeType.ALL, orphanRemoval = true)
-	@JsonManagedReference
+	@JsonIgnore
 	private List<ShoppingCartDetail> shoppingCartDetails = new ArrayList<>();
 	
 	@OneToMany(mappedBy = "shoppingCart", cascade = CascadeType.ALL, orphanRemoval = true)
-	@JsonManagedReference
+	@JsonIgnore
 	private List<Order> order = new ArrayList<>();
 
 	public ShoppingCart() {

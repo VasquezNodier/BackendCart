@@ -18,22 +18,38 @@ public class CouponServiceImpl implements CouponService {
 	public CouponServiceImpl(CouponRepository couponRepository) {
 		this.couponRepository = couponRepository;
 	}
-
 	@Override
 	public List<Coupon> getAllCoupons() {
-		return couponRepository.findAll();
+	    /**
+	     * Retrieves all coupons from the database.
+	     *
+	     * @return List of all Coupon objects.
+	     */
+	    return couponRepository.findAll();
 	}
 
 	@Override
 	public Coupon getCouponById(Long coupon_id) {
-		return couponRepository.findById(coupon_id)
-				.orElseThrow(() -> new RuntimeException
-						("Coupon not found with id: " + coupon_id));
+	    /**
+	     * Retrieves a specific coupon by its unique ID.
+	     *
+	     * @param coupon_id The ID of the coupon to be retrieved.
+	     * @return The corresponding Coupon object if found.
+	     * @throws RuntimeException If the coupon is not found.
+	     */
+	    return couponRepository.findById(coupon_id)
+	            .orElseThrow(() -> new RuntimeException("Coupon not found with id: " + coupon_id));
 	}
 
 	@Override
 	public Coupon createCoupon(Coupon coupon) {
-		return couponRepository.save(coupon);
+	    /**
+	     * Creates a new coupon and saves it to the database.
+	     *
+	     * @param coupon The Coupon object containing coupon details to be created.
+	     * @return The created Coupon object saved in the database.
+	     */
+	    return couponRepository.save(coupon);
 	}
 
 }

@@ -31,33 +31,50 @@ public class SeasonalDiscountServiceImpl implements SeasonalDiscountService {
 
 	@Override
 	public List<SeasonalDiscount> getAllDiscounts() {
-		return discountRepository.findAll();
+	    /**
+	     * Retrieves all seasonal discounts from the database.
+	     *
+	     * @return List of all SeasonalDiscount objects.
+	     */
+	    return discountRepository.findAll();
 	}
 
 	@Override
 	public SeasonalDiscount getDiscountById(Long discount_id) {
-		return discountRepository.findById(discount_id)
-				.orElseThrow(()-> new RuntimeException
-						("Discount not found with id: "+discount_id));
+	    /**
+	     * Retrieves a specific seasonal discount by its unique ID.
+	     *
+	     * @param discount_id The ID of the seasonal discount to be retrieved.
+	     * @return The corresponding SeasonalDiscount object if found.
+	     * @throws RuntimeException If the discount is not found.
+	     */
+	    return discountRepository.findById(discount_id)
+	            .orElseThrow(() -> new RuntimeException("Discount not found with id: " + discount_id));
 	}
 
 	@Override
 	public SeasonalDiscount createDiscount(SeasonalDiscountDTO discountDTO) {
-		
-		Product product = productRepository.findById(discountDTO.getProductId())
-                .orElseThrow(() -> new RuntimeException
-                		("Product not found with id: " + discountDTO.getProductId()));
+	    /**
+	     * Creates a new seasonal discount associated with a specific product.
+	     * Validates the existence of the product before creating the discount.
+	     *
+	     * @param discountDTO The data transfer object containing discount details.
+	     * @return The created SeasonalDiscount object saved in the database.
+	     * @throws RuntimeException If the product associated with the discount is not found.
+	     */
+	    Product product = productRepository.findById(discountDTO.getProductId())
+	            .orElseThrow(() -> new RuntimeException(
+	                    "Product not found with id: " + discountDTO.getProductId()));
 
+	    SeasonalDiscount discount = new SeasonalDiscount(
+	            product,
+	            discountDTO.getPercentage(),
+	            discountDTO.getStartDate(),
+	            discountDTO.getEndDate(),
+	            LocalDateTime.now()
+	    );
 
-        SeasonalDiscount discount = new SeasonalDiscount(
-                product,
-                discountDTO.getPercentage(),
-                discountDTO.getStartDate(),
-                discountDTO.getEndDate(),
-                LocalDateTime.now()
-        );
-        
-		return discountRepository.save(discount);
+	    return discountRepository.save(discount);
 	}
 
 }

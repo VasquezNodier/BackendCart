@@ -6,6 +6,8 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import jakarta.persistence.CascadeType;
@@ -45,9 +47,9 @@ public class Coupon {
     @Column(name = "created_at", updatable = false)
     private LocalDateTime createdAt;
    
+    @JsonIgnore
     @OneToMany(mappedBy = "coupon", cascade = CascadeType.ALL, orphanRemoval = true)
-	@JsonManagedReference
-	private List<Order> order = new ArrayList<>();
+    private List<Order> order;
 
 	public Coupon() {
 	}

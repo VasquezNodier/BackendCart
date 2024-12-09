@@ -5,6 +5,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import jakarta.persistence.CascadeType;
@@ -40,12 +41,12 @@ public class Product {
 	@Column(name = "created_at", updatable = false)
 	private LocalDateTime createdAt;
 	
+	@JsonIgnore
 	@OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true)
-	@JsonManagedReference
 	private List<SeasonalDiscount> seasonalDiscounts;
 	
+	@JsonIgnore
 	@OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true)
-	@JsonManagedReference
 	private List<ShoppingCartDetail> shoppingCartDetails = new ArrayList<>();
 	
 	public Product() {

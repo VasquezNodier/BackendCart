@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.shopper.cart.model.User;
 import com.shopper.cart.service.UserService;
 
+import io.swagger.v3.oas.annotations.Hidden;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -22,6 +23,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
 
 @RestController
+@Hidden
 @RequestMapping("/api/v1/users")
 @Tag(name = "User Controller", description = "Controller for users")
 public class UserController {

@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.shopper.cart.dto.OrderDTO;
 import com.shopper.cart.model.Order;
 import com.shopper.cart.model.Order;
 import com.shopper.cart.service.OrderService;
@@ -97,7 +98,7 @@ public class OrderController {
 	                required = true,
 	                content = @Content(
 	                        mediaType = "application/json",
-	                        schema = @Schema(implementation = Order.class)
+	                        schema = @Schema(implementation = OrderDTO.class)
 	                )
 	        ),
 	        responses = {
@@ -106,7 +107,7 @@ public class OrderController {
 	                        description = "Order successfully created",
 	                        content = @Content(
 	                                mediaType = "application/json",
-	                                schema = @Schema(implementation = Order.class)
+	                                schema = @Schema(implementation = OrderDTO.class)
 	                        )
 	                ),
 	                @ApiResponse(
@@ -115,8 +116,8 @@ public class OrderController {
 	                )
 	        }
 	)
-	public ResponseEntity<Order> createOrder(@RequestBody Order order) {
-	    return ResponseEntity.ok(orderService.createOrder(order));
-	}
+	public ResponseEntity<Order> createOrder(@RequestBody OrderDTO orderDTO) {
+        return ResponseEntity.ok(orderService.createOrder(orderDTO));
+    }
 
 }
