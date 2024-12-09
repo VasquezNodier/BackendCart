@@ -40,7 +40,7 @@ Antes de ejecutar el proyecto, asegúrate de tener instalado:
     
 5.  `mvn spring-boot:run`
 
-6.  Access to API doc from `http://localhost:8080/swagger-ui/index.html`
+6.  Accede al API desde `http://localhost:8080/swagger-ui/index.html`
 
 **Estructura del Proyecto**
 ---------------------------
@@ -58,8 +58,9 @@ Antes de ejecutar el proyecto, asegúrate de tener instalado:
             /impl
       /resources
          application.properties 
-         BackendShoppingCart.sql    --> Script SQL
-         RelationalModelSQL.png     --> Database Diagram         
+         BackendShoppingCart.sql    --> Script de  SQL
+         RelationalModelSQL.png     --> Diagrama de Base de datos        
+         SHOPPING_CART.postman_collection.json     --> Collection Postman        
    ```
 
     
